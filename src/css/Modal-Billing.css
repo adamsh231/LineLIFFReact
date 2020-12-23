@@ -1,0 +1,119 @@
+/* general styling */
+.button-billing {
+    color: #fff;
+    font-family: 'Abril Fatface', cursive;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    border-radius: 16px;
+    padding: 5px;
+    font-size: 1.2rem;
+    background-color: #e4508f;
+    width: 12rem;
+    height: 3rem;
+    border-width: 0px 2px 4px;
+    border-style: solid;
+    border-color: #d04982;
+    transition: .1s;
+}
+
+.button-billing:hover {
+    background-color: #e65f99;
+    border-color: #e4508f;
+    cursor: pointer;
+}
+
+.button-billing:focus {
+    outline: 0;
+}
+
+.button-billing:active {
+    transition: .2s;
+    border-width: 2px;
+}
+
+
+/* utility */
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* structure */
+
+.container-billing {
+    background-color: #fff;
+    border: thick dashed #556fb5;
+    padding: 2rem;
+    width: 100%;
+    /* max-width: 600px; */
+}
+
+.title {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.container-billing table {
+    width: 100%;
+    color: #e4508f;
+    font-weight: 300;
+}
+
+.row-data td {
+    width: 25%;
+    text-align: center;
+    padding: 1rem;
+}
+
+tfoot {
+    text-align: center;
+}
+
+tfoot tr * {
+    padding: 1rem;
+}
+
+.row-data {
+    border-bottom: 1px dashed #556fb5;
+}
+
+.container-overflow{
+    overflow-x: auto;
+}
+
+.row-heading th {
+    color: #e65f99;
+    width: 25%;
+    text-align: center;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed #556fb5;
+}
+
+.item-desc {
+    width: 50%;
+    text-align: left;
+}
+
+.item-total,
+.total {
+    font-weight: 400;
+}
+
+.btn-container {
+    padding: 1rem 0 0;
+}
+

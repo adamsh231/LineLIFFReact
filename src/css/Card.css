@@ -1,0 +1,94 @@
+/*Downloaded from https://www.codeseek.co/alexpopovich/ui-food-card-zZamKQ */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #2B2D42;
+}
+
+.wrapper {
+  background: #fff;
+  max-width: 400px;
+  position: relative;
+  margin: 20px auto;
+  box-shadow: 0px 0px 40px 10px #212129;
+}
+.wrapper .header {
+  min-height: 250px;
+  background: url("https://static.pexels.com/photos/5928/salad-healthy-diet-spinach.jpg") no-repeat center;
+  opacity: 0.9;
+  background-size: cover;
+}
+.wrapper .name {
+  font-size: 1.4em;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 20px;
+}
+.wrapper .border {
+  border: #EF233C 2px solid;
+  position: relative;
+  margin: 0 auto;
+  width: 64px;
+}
+.wrapper .info {
+  margin-top: -11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 30px;
+}
+.wrapper .button {
+  background: #212129;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 0;
+  transition: 300ms;
+}
+.wrapper .button:hover {
+  background: green;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.wrapper .button-remove{
+  background: red;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 0;
+  transition: 300ms;
+  cursor: pointer;
+  display: none;
+}
+
+*{
+    /* border: 1px solid red; */
+}
