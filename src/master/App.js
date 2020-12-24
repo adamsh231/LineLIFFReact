@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Card from '../component/Card';
 import FAB from '../component/FAB';
 import Modal from '../component/Modal';
@@ -23,6 +23,7 @@ class App extends Component {
     this.setState(() => ({
       items: list.categorys
     }));
+    beginLiffApp();
   }
 
   render() {
@@ -50,6 +51,77 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function beginLiffApp() {
+  const useNodeJS = false;
+  const defaultLiffId = "1655374995-NlZJnl5b";
+  let myLiffId = "";
+  if (useNodeJS) {
+    fetch('/send-id')
+      .then(function (reqResponse) {
+        return reqResponse.json();
+      })
+      .then(function (jsonResponse) {
+        myLiffId = jsonResponse.id;
+        initializeLiffOrDie(myLiffId);
+      })
+      .catch(function (error) {
+        console.log(error.messages);
+      });
+  } else {
+    myLiffId = defaultLiffId;
+    initializeLiffOrDie(myLiffId);
+  }
+
+}
+
+function initializeLiffOrDie(myLiffId) {
+  if (!myLiffId) {
+    console.log(myLiffId);
+  } else {
+    initializeLiff(myLiffId);
+  }
+}
+
+function initializeLiff(myLiffId) {
+  window.liff
+    .init({
+      liffId: myLiffId
+    })
+    .then(() => {
+      initializeApp();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function initializeApp() {
+  console.log("initialized!");
+  console.log(window.liff.isLoggedIn());
+  checkClient();
+  eventListener();
+}
+
+function checkClient() {
+  if (!window.liff.isInClient()) {
+    if (window.liff.isLoggedIn()) {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('logout').style.display = 'block';
+    } else {
+      document.getElementById('login').style.display = 'block';
+      document.getElementById('logout').style.display = 'none';
+    }
+  }
+}
+
+function eventListener() {
+  document.getElementById('login').addEventListener('click', function () {
+    if (!window.liff.isLoggedIn()) {
+      window.liff.login();
+    }
+  });
 }
 
 export default App;
