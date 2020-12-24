@@ -98,9 +98,6 @@ function initializeLiff(myLiffId) {
 }
 
 function initializeApp() {
-  console.log("initialized!");
-  console.log(window.liff.isInClient());
-  console.log(window.liff.isLoggedIn());
   checkClient();
   eventListener();
 }

@@ -16,6 +16,7 @@ class Modal extends Component {
             list: {}
         }
         this.fabClick = this.fabClick.bind(this);
+        this.pay = this.pay.bind(this);
     }
 
     fabClick() {
@@ -40,7 +41,7 @@ class Modal extends Component {
     }
 
     sumTotal() {
-        var list = this.state.list ;
+        var list = this.state.list;
         var sum = 0;
         Object.keys(list).map(function (key) {
             return list[key].map(cart =>
@@ -48,6 +49,25 @@ class Modal extends Component {
             );
         });
         return IDRFormatter(sum);
+    }
+
+    pay() {
+        if (window.liff.isLoggedIn()) {
+            if (!window.liff.isInClient()) {
+                alert("You need to open from Line App");
+            } else {
+                window.liff.sendMessages([{
+                    'type': 'text',
+                    'text': "Anda telah menggunakan fitur Send Message!"
+                }]).then(function() {
+                    window.alert('Ini adalah pesan dari fitur Send Message');
+                }).catch(function(error) {
+                    window.alert('Error sending message: ' + error);
+                });
+            }
+        }else{
+            alert("You Need to Login First!");
+        }
     }
 
     componentDidMount() {
@@ -118,7 +138,9 @@ class Modal extends Component {
                                         </table>
 
                                     </div>
-                                    <div class="btn-container center flex-row"> <button class="button-billing"> Pay</button> </div>
+                                    <div class="btn-container center flex-row">
+                                        <button onClick={this.pay} class="button-billing"> Pay</button>
+                                    </div>
                                 </div>
 
                             </div>
