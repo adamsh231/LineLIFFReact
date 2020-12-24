@@ -105,6 +105,8 @@ function initializeApp() {
 }
 
 function checkClient() {
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('logout').style.display = 'none';
   if (!window.liff.isInClient()) {
     if (window.liff.isLoggedIn()) {
       document.getElementById('login').style.display = 'none';
@@ -113,9 +115,6 @@ function checkClient() {
       document.getElementById('login').style.display = 'block';
       document.getElementById('logout').style.display = 'none';
     }
-  } else {
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('logout').style.display = 'none';
   }
 }
 
