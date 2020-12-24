@@ -99,24 +99,22 @@ function initializeLiff(myLiffId) {
 
 function initializeApp() {
   console.log("initialized!");
+  console.log(window.liff.isInClient());
   console.log(window.liff.isLoggedIn());
   checkClient();
   eventListener();
 }
 
 function checkClient() {
-  var displayName = "";
   if (!window.liff.isInClient()) {
     if (window.liff.isLoggedIn()) {
       window.liff.getProfile()
         .then(profile => {
-          console.log(profile.displayName);
-          displayName = profile.displayName;
+          document.getElementById('logout').innerHTML = profile.displayName + '| Sign Out';
         })
         .catch((err) => {
           console.log('error', err);
         });
-      document.getElementById('logout').innerHTML = displayName + '| Sign Out';
       document.getElementById('login').style.display = 'none';
       document.getElementById('logout').style.display = 'block';
     } else {
@@ -126,13 +124,11 @@ function checkClient() {
   } else {
     window.liff.getProfile()
       .then(profile => {
-        console.log(profile.displayName);
-        displayName = profile.displayName;
+        document.getElementById('profile').innerHTML = profile.displayName;
       })
       .catch((err) => {
         console.log('error', err);
       });
-    document.getElementById('profile').innerHTML = displayName;
     document.getElementById('profile').style.display = 'block';
   }
 }
