@@ -76,6 +76,7 @@ class Modal extends Component {
             );
         });
 
+        text += "\n Dengan total harga pesanan *" + this.sumTotal() + "*";
         text += "\n Pesanan akan segera diproses dan akan diinformasikan selanjutnya \n\n";
         text += "Mohon ditunggu ya! :)";
 
