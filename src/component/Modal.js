@@ -69,7 +69,7 @@ class Modal extends Component {
         Object.keys(list).map(function (key) {
             return list[key].map(function(cart){
                 counter++;
-                text += counter + ". " + cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + " buah \n"
+                text += "*" +counter + ". " + cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + " buah* \n"
                 return text;
             }
                 
