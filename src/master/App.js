@@ -110,7 +110,7 @@ function checkClient() {
     if (window.liff.isLoggedIn()) {
       window.liff.getProfile()
         .then(profile => {
-          console.log(profile);
+          console.log(profile.displayName);
           displayName = profile.displayName;
         })
         .catch((err) => {
@@ -126,7 +126,7 @@ function checkClient() {
   } else {
     window.liff.getProfile()
       .then(profile => {
-        console.log(profile);
+        console.log(profile.displayName);
         displayName = profile.displayName;
       })
       .catch((err) => {
