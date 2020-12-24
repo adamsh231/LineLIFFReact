@@ -124,7 +124,8 @@ function checkClient() {
   } else {
     window.liff.getProfile()
       .then(profile => {
-        document.getElementById('profile').innerHTML = profile.displayName;
+        document.getElementById('profile-image').src = profile.pictureUrl;
+        document.getElementById('profile-name').innerHTML = "| " + profile.displayName;
       })
       .catch((err) => {
         console.log('error', err);
