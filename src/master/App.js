@@ -109,6 +109,15 @@ function checkClient() {
   document.getElementById('logout').style.display = 'none';
   if (!window.liff.isInClient()) {
     if (window.liff.isLoggedIn()) {
+      var displayName = "";
+      window.liff.getProfile()
+        .then(profile => {
+          displayName = profile.displayName
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
+      document.getElementById('logout').innerHTML = displayName + '| Sign Out';
       document.getElementById('login').style.display = 'none';
       document.getElementById('logout').style.display = 'block';
     } else {
