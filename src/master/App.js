@@ -14,18 +14,21 @@ class App extends Component {
 
   componentDidMount() {
     // axios.get('https://jsonkeeper.com/b/HKWX')
-    axios.get('https://shoesmartlinebot.herokuapp.com/food')
-      .then(result => {
-        this.setState(() => ({
-          items: result.data.categorys
-        }));
-      });
+    //   .then(result => {
+    //     this.setState(() => ({
+    //       items: result.data.categorys
+    //     }));
+    //   });
+    var list = require('../json/food.json');
+    this.setState(() => ({
+      items: list.categorys
+    }));
   }
 
   render() {
     return (
       <div class="container" style={{ marginTop: '100px', marginBottom: '100px' }}>
-        <Modal/>
+        <Modal />
         {this.state.items.map(item =>
           <div key={item.id} class="card mb-4">
             <div class="card-title text-center mt-4">
