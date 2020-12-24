@@ -54,14 +54,7 @@ class Modal extends Component {
     generateMessage() {
         var self = this;
         var list = this.state.list;
-        var text = "Hai " ;
-        window.liff.getProfile()
-            .then(profile => {
-                text += profile.displayName + "! \n\n";
-            })
-            .catch((err) => {
-                console.log('error', err);
-            });
+        var text = "";
         text += "Terimakasih telah memesan makanan di restaurant kami \n";
         text += "Berikut merupakan review pesanan anda \n\n";
 
@@ -69,15 +62,15 @@ class Modal extends Component {
         Object.keys(list).map(function (key) {
             return list[key].map(function(cart){
                 counter++;
-                text += "*" +counter + ". " + cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + " buah* \n"
+                text += counter + ". " + cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + " buah \n"
                 return text;
             }
                 
             );
         });
 
-        text += "\n Dengan total harga pesanan *" + this.sumTotal() + "* \n";
-        text += "\n Pesanan akan segera diproses dan akan diinformasikan selanjutnya \n\n";
+        text += "\nDengan total harga pesanan " + this.sumTotal() + "\n";
+        text += "\nPesanan akan segera diproses dan akan diinformasikan selanjutnya \n\n";
         text += "Mohon ditunggu ya! :)";
 
 
