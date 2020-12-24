@@ -17,7 +17,6 @@ class Modal extends Component {
         }
         this.fabClick = this.fabClick.bind(this);
         this.pay = this.pay.bind(this);
-        this.getProfileLine = this.getProfileLine.bind(this);
     }
 
     fabClick() {
@@ -52,28 +51,34 @@ class Modal extends Component {
         return IDRFormatter(sum);
     }
 
-    getProfileLine() {
+    generateMessage() {
+        var self = this;
+        var list = this.state.list;
+        var text = "Hai " ;
         window.liff.getProfile()
             .then(profile => {
-                return profile.displayName;
+                text += profile.displayName + "! \n\n";
             })
             .catch((err) => {
                 console.log('error', err);
             });
-    }
-
-    generateMessage() {
-        var self = this;
-        var list = this.state.list;
-        var text = "Hai " + this.getProfileLine() + "! \n\n";
         text += "Terimakasih telah memesan makanan di restaurant kami \n";
         text += "Berikut merupakan review pesanan anda \n\n";
 
+        var counter = 0;
         Object.keys(list).map(function (key) {
-            return list[key].map(cart =>
-                text += cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + "buah"
+            return list[key].map(function(cart){
+                counter++;
+                text += counter + ". " + cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + " buah \n"
+                return text;
+            }
+                
             );
         });
+
+        text += "\n Pesanan akan segera diproses dan akan diinformasikan selanjutnya \n\n";
+        text += "Mohon ditunggu ya! :)";
+
 
         return text;
     }
