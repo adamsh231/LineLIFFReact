@@ -9,6 +9,7 @@ class Navbar extends Component {
                         <a class="navbar-brand" href="#d">
                             <img src="https://i.ibb.co/sVZ2nQf/bon-appetit-logo.png" alt="" width="50" height="50" class="d-inline-block align-top" />
                         </a>
+                        <button id="profile" class="btn" style={{ display: "none" }} type="submit" disabled></button>
                         <button id="login" class="btn btn-outline-success" style={{ display: "none" }} type="submit">Sign in</button>
                         <button id="logout" class="btn btn-outline-success" style={{ display: "none" }} type="submit">Sign Out</button>
                     </div>

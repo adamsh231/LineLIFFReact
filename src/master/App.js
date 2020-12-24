@@ -105,9 +105,9 @@ function initializeApp() {
 }
 
 function checkClient() {
+  var displayName = "";
   if (!window.liff.isInClient()) {
     if (window.liff.isLoggedIn()) {
-      var displayName = "";
       window.liff.getProfile()
         .then(profile => {
           console.log(profile);
@@ -123,6 +123,17 @@ function checkClient() {
       document.getElementById('login').style.display = 'block';
       document.getElementById('logout').style.display = 'none';
     }
+  } else {
+    window.liff.getProfile()
+      .then(profile => {
+        console.log(profile);
+        displayName = profile.displayName;
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+    document.getElementById('profile').innerHTML = displayName;
+    document.getElementById('profile').style.display = 'block';
   }
 }
 
