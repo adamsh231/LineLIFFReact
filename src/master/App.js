@@ -105,14 +105,13 @@ function initializeApp() {
 }
 
 function checkClient() {
-  document.getElementById('login').style.display = 'none';
-  document.getElementById('logout').style.display = 'none';
   if (!window.liff.isInClient()) {
     if (window.liff.isLoggedIn()) {
       var displayName = "";
       window.liff.getProfile()
         .then(profile => {
-          displayName = profile.displayName
+          console.log(profile);
+          displayName = profile.displayName;
         })
         .catch((err) => {
           console.log('error', err);
