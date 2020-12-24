@@ -13,7 +13,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://jsonkeeper.com/b/HKWX')
+    // axios.get('https://jsonkeeper.com/b/HKWX')
+    axios.get('https://shoesmartlinebot.herokuapp.com/food')
       .then(result => {
         this.setState(() => ({
           items: result.data.categorys

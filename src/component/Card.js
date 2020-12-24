@@ -14,10 +14,10 @@ export function IDRFormatter(idr) {
 }
 
 //TODO: Currying?? WTF!! -> use currying isntead of bind (for class) ??
+//TODO: FAB BUTTON WRONG BEHAVIOR!!
 function changeQty(id, behavior) {
     return function (e) {
         var qty = parseInt(document.getElementById('qtyhidden' + id).value);
-        var fab = parseInt(document.getElementById('fab-count').innerHTML);
 
         qty = isNaN(qty) ? 0 : qty;
 
@@ -26,15 +26,12 @@ function changeQty(id, behavior) {
         } else {
             if (behavior) {
                 qty += 1;
-                fab += 1;
             } else {
-                fab -= 1;
                 qty -= 1;
             }
         }
         document.getElementById('qtyhidden' + id).value = qty;
         document.getElementById('qty' + id).innerHTML = qty;
-        document.getElementById('fab-count').innerHTML = fab;
     }
 }
 
@@ -52,6 +49,8 @@ function _addToCart(menu_id, menu_name, arr_sub_id) {
     var cart = {};
     var current_list = [];
 
+    var qtyfab = parseInt(document.getElementById('fab-count-hidden').value);
+
     if (localStorage.cart) {
         cart = JSON.parse(localStorage.getItem('cart'));
     }
@@ -60,6 +59,7 @@ function _addToCart(menu_id, menu_name, arr_sub_id) {
     for (let index = 0; index < arr_sub_id.length; index++) {
         var qty = parseInt(document.getElementById('qtyhidden' + arr_sub_id[index].id).value);
         if (qty > 0) {
+            qtyfab += qty;
             current_list[counter] =
             {
                 "id": arr_sub_id[index].id,
@@ -71,6 +71,9 @@ function _addToCart(menu_id, menu_name, arr_sub_id) {
             counter++;
         }
     }
+    
+    document.getElementById('fab-count-hidden').value = qtyfab;
+    document.getElementById('fab-count').innerHTML = qtyfab;
     cart[menu_id] = current_list;
     localStorage.setItem('cart', JSON.stringify(cart));
     _cartBehave(menu_id, true);
@@ -78,10 +81,19 @@ function _addToCart(menu_id, menu_name, arr_sub_id) {
 
 function _removeFromCart(menu_id) {
     var cart = {};
+    var qtyfab = parseInt(document.getElementById('fab-count-hidden').value);
+
     if (localStorage.cart) {
         cart = JSON.parse(localStorage.getItem('cart'));
     }
 
+    for (let index = 0; index < cart[menu_id].length; index++) {
+        var qty = parseInt(document.getElementById('qtyhidden' + cart[menu_id][index].id).value);
+        qtyfab -= qty;
+    }
+
+    document.getElementById('fab-count-hidden').value = qtyfab;
+    document.getElementById('fab-count').innerHTML = qtyfab;
     delete cart[menu_id];
     localStorage.setItem('cart', JSON.stringify(cart));
     _cartBehave(menu_id, false);
