@@ -17,6 +17,7 @@ class Modal extends Component {
         }
         this.fabClick = this.fabClick.bind(this);
         this.pay = this.pay.bind(this);
+        this.getProfileLine = this.getProfileLine.bind(this);
     }
 
     fabClick() {
@@ -51,21 +52,47 @@ class Modal extends Component {
         return IDRFormatter(sum);
     }
 
+    getProfileLine() {
+        window.liff.getProfile()
+            .then(profile => {
+                return profile.displayName;
+            })
+            .catch((err) => {
+                console.log('error', err);
+            });
+    }
+
+    generateMessage() {
+        var list = this.state.list;
+        var text = "Hai " + this.getProfileLine() + "! \n\n";
+        text += "Terimakasih telah memesan makanan di restaurant kami \n";
+        text += "Berikut merupakan review pesanan anda \n\n";
+
+        Object.keys(list).map(function (key) {
+            return list[key].map(cart =>
+                text += cart.name + "(" + this.isSame(cart.name, cart.sub_name) + "), " + cart.qty + "buah"
+            );
+        });
+
+        return text;
+    }
+
     pay() {
+        var self = this;
         if (window.liff.isLoggedIn()) {
             if (!window.liff.isInClient()) {
                 alert("You need to open from Line App");
             } else {
                 window.liff.sendMessages([{
                     'type': 'text',
-                    'text': "Anda telah menggunakan fitur Send Message!"
-                }]).then(function() {
-                    window.alert('Ini adalah pesan dari fitur Send Message');
-                }).catch(function(error) {
-                    window.alert('Error sending message: ' + error);
+                    'text': self.generateMessage()
+                }]).then(function () {
+                    window.liff.closeWindow();
+                }).catch(function (error) {
+                    window.alert('Pay Sending Message Error!: ' + error);
                 });
             }
-        }else{
+        } else {
             alert("You Need to Login First!");
         }
     }
