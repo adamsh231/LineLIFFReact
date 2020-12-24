@@ -63,6 +63,7 @@ class Modal extends Component {
     }
 
     generateMessage() {
+        var self = this;
         var list = this.state.list;
         var text = "Hai " + this.getProfileLine() + "! \n\n";
         text += "Terimakasih telah memesan makanan di restaurant kami \n";
@@ -70,7 +71,7 @@ class Modal extends Component {
 
         Object.keys(list).map(function (key) {
             return list[key].map(cart =>
-                text += cart.name + "(" + this.isSame(cart.name, cart.sub_name) + "), " + cart.qty + "buah"
+                text += cart.name + "(" + self.isSame(cart.name, cart.sub_name) + "), " + cart.qty + "buah"
             );
         });
 
