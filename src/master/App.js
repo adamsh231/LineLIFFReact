@@ -125,6 +125,13 @@ function eventListener() {
       window.liff.login();
     }
   });
+
+  document.getElementById('logout').addEventListener('click', function () {
+    if (window.liff.isLoggedIn()) {
+      window.liff.logout();
+      window.location.reload();
+    }
+  });
 }
 
 export default App;
